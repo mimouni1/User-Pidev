@@ -1,161 +1,243 @@
 <!DOCTYPE html>
-<html>
-{% block stylesheets %}
- <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<html lang="en">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <title>Transport</title>
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	{% block stylesheets %}
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  {% endblock  %}
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-      
-    </head>
-    <body>
-    {% block nav %}   
-    <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-    {% endblock %}
-        {% block body %}
-        {% endblock %}
+    <!-- Plugins CSS -->
+	<link rel="stylesheet" href="{{ asset('front/plugins/css/plugins.css')}}">	
+    
+    <!-- Custom style -->
+    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('front/css/responsiveness.css') }}" rel="stylesheet">
+	<link id="jssDefault" rel="stylesheet" href="{{ asset('front/css/skins/default.css') }}">
 
-          {% block footer %} <footer id="footer">
+	{% endblock %}
+    
+	</head>
+	
+	{% block body %}
+	<body>
+		
+		{% block navbar %}
+		<!-- ======================= Start Navigation ===================== -->
+		<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
+			<div class="container">
+			
+				<!-- Start Logo Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+				</div>
+				<!-- End Logo Header Navigation -->
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar-menu">
+				
+					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+					
+						<li class="dropdown">
+							<a href="{{ path('index') }}">Home</a>
+						</li>
+						
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+					{% if app.user %}
+						
+						<li class="dropdown dash-link"><a href="#" class="dropdown-toggle"><img src="{{ asset('front/img/user-3.jpg') }}" class="img-responsive avatar" alt="" />Hi, {{ app.user.email }}</a> 
+							<ul class="dropdown-menu left-nav">
+								<li><a href="dashboard.html">Dashboard</a></li>
+								<li><a href="http://themezhub.com/">My Profile</a></li>
+								<li><a href="{{ path('app_logout') }}">Log Out</a></li>
+							</ul>
+						</li>
+					
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Ninestars</h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-          </div>
+					{% else %}
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
+						<li class="br-right"><a href="{{ path('app_login') }}"><i class="login-icon ti-user"></i>Login</a></li>
+						<li class="sign-up"><a class="btn-signup red-btn" href="{{ path('app_register') }}">Register</a></li> 
+					{% endif %}
+					</ul>
+						
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>  
+		</nav>
+		{% endblock %}
+		<!-- ======================= End Navigation ===================== -->
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
+		<div class="main-banner" style="background-image:url(assets/img/banner-1.jpg);">
+			<div class="container">
+				<div class="col-md-12">
+				
+					
+				</div>
+			</div>
+		</div>
+		
+		{% block content %}
+		
+		{% endblock %}
+			
+		{% block footer %}
+		<!-- ================= footer start ========================= -->
+		<footer class="footer dark-bg">
+			<div class="container">
+				
+				<!-- Row Start -->
+				<div class="row">
+				
+					<div class="col-md-8 col-sm-8">
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<h4>Our COMPANY !</h4>
+								<ul>
+									<li><a href="destination-grid.html">About US</a></li>
+									<li><a href="destination-list.html">Partner with Book IT</a></li>
+								</ul>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<h4>GLOBAL COVERAGE</h4>
+								<ul>
+									<li><a href="tour-grid.html">All bus and train routes</a></li>
+									<li><a href="tour-list.html">All stations</a></li>
+									<li><a href="tour-grid-sidebar.html">All cities</a></li>
+									<li><a href="tour-list-sidebar.html">All countries</a></li>
+									<li><a href="tour-detail.html">All points of interest</a></li>
+									<li><a href="http://themezhub.com/">Bus and Train companies</a></li>
+								</ul>
+							</div>
+							 <div class="col-md-4 col-sm-4">
+								<h4>Support </h4>
+								<ul>
+									<li><a href="hotel-list.html">Help</a></li>
+								</ul>
+							</div> 
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<h4>Subscribe Now</h4>
+						<!-- Newsletter -->
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Enter Email">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><i class="fa fa-location-arrow font-20"></i></button>
+							</span>
+						</div>
+						
+						<!-- Social Box -->
+						<div class="f-social-box">
+							<ul>
+								<li><a href="https://www.facebook.com/ikbel.mimouni"><i class="fa fa-facebook facebook-cl"></i></a></li>
+								<li><a href="#"><i class="fa fa-google google-plus-cl"></i></a></li>
+								<li><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fx.com%2Fikbelmimouni%3Fs%3D21%26t%3DJvd5yckuUJWZtklCG9WcQA%26fbclid%3DIwAR3kIoMFyVYMNGnA2TTP_EBBrslAjmDX0dj9zYWl275Raf45B4G41v166Ic&h=AT0huNesfDSviyCL_UlRGYBWrPPimpInCM4lRJO-RcCIZ1TqjQZtQ4w8IhCEtiq5uGwzRvc6TYA4crsLsnM1EN4b_7nS8WiFDJOUwqd9Es_gSNrIL4j-wd-oQPaHWiRdxIMVI0N9TOZ6VLg"><i class="fa fa-twitter twitter-cl"></i></a></li>
+								<li><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fpin.it%2F5wX4iHq%3Ffbclid%3DIwAR1dwZmtoYOS9x4h0STVZ2EXajowliRSegJVDrNfYupDgZJnTo5v88pkRIw&h=AT2jHmVOMNfkxkDLuhJuD7cPOdgMcGxvcKPCSRw2C4yeWu5_b511GLr-WxFrEVcly7xKedYFO7hWiWfiwqdlSSAQGj7_2lT-SZ0sENkczHVOULhaoAcYejC7phDw2OqqSmra7g"><i class="fa fa-pinterest pinterest-cl"></i></a></li>
+								<li><a href="https://www.instagram.com/ikbel_mimouni/#"><i class="fa fa-instagram instagram-cl"></i></a></li>
+							</ul>
+						</div>
+						
+						<!-- App Links -->
+						<div class="f-app-box">
+							<ul>
+								<li><a href="#"><i class="fa fa-apple"></i>App Store</a></li>
+								<li><a href="#"><i class="fa fa-android"></i>Play Store</a></li>
+							</ul>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<!-- Row Start -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="copyright text-center">
+							<p><a target="_balnk" href="https://www.templatespoint.net">Templates Point</a></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</footer>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
-          </div>
+		{% endblock %}
 
-        </div>
-      </div>
-    </div>
+		{% block javascript %}
+		 
+		<!-- =================== START JAVASCRIPT ================== -->
+		<script src="{{ asset('front/plugins/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/viewportchecker.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootsnav.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/slick.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.nice-select.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.fancybox.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.downCount.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/freshslider.1.0.0.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/moment.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/daterangepicker.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/wysihtml5-0.3.0.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootstrap-wysihtml5.js')}}"></script>
+		
+		<!-- Dashboard Js -->
+		<script src="{{ asset('front/plugins/js/jquery.slimscroll.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.metisMenu.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.easing.min.js')}}"></script>
+ 
+		<!-- Custom Js -->
+		<script src="{{ asset('front/js/custom.js')}}"></script>
+		
+		<script>
+			$(function() {
 
-    <div class="container py-4">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Ninestars</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->{% endblock %}
+			  $('input[name="book-date"]').daterangepicker({
+				  autoUpdateInput: false,
+				  locale: {
+					  cancelLabel: 'Clear'
+				  }
+			  });
 
-{% block js %}
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+			  $('input[name="book-date"]').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			  });
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-{% endblock %}
+			  $('input[name="book-date"]').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			  });
 
+			});
+		</script>
+		
+		<script>
+			function openRightMenu() {
+				document.getElementById("rightMenu").style.display = "block";
+			}
+			function closeRightMenu() {
+				document.getElementById("rightMenu").style.display = "none";
+			}
+		</script>
 
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#styleOptions').styleSwitcher();
+			});
+		</script>
+
+		{% endblock %}
+	
+    </body>
+
+	{% endblock %}
 
 </html>
