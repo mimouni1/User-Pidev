@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transport</title>
+
+	{% block stylesheets %}
+
+    <!-- Plugins CSS -->
+	<link rel="stylesheet" href="{{ asset('front/plugins/css/plugins.css')}}">	
+    
+    <!-- Custom style -->
+    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('front/css/responsiveness.css') }}" rel="stylesheet">
+	<link id="jssDefault" rel="stylesheet" href="{{ asset('front/css/skins/default.css') }}">
+
+	{% endblock %}
+    
+	</head>
+	
+	{% block body %}
+	<body>
+		
+		{% block navbar %}
+		<!-- ======================= Start Navigation ===================== -->
+		<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
+			<div class="container">
+			
+				<!-- Start Logo Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+
+				</div>
+				<!-- End Logo Header Navigation -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar-menu">
+				
+					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+					
+						<li class="dropdown">
+							<a href="{{ path('index') }}">Home</a>
+						</li>
+						
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+					{% if app.user %}
+						
+						<li class="dropdown dash-link"><a href="#" class="dropdown-toggle"><img src="{{ asset('front/img/user-3.jpg') }}" class="img-responsive avatar" alt="" />Hi, {{ app.user.email }}</a> 
+							<ul class="dropdown-menu left-nav">
+								<li><a href="dashboard.html">Dashboard</a></li>
+								<li><a href="http://themezhub.com/">My Profile</a></li>
+								<li><a href="{{ path('app_logout') }}">Log Out</a></li>
+							</ul>
+						</li>
+					
+
+					{% else %}
+
+						<li class="br-right"><a href="{{ path('app_login') }}"><i class="login-icon ti-user"></i>Login</a></li>
+						<li class="sign-up"><a class="btn-signup red-btn" href="{{ path('app_register') }}">Register</a></li> 
+					{% endif %}
+					</ul>
+						
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>  
+		</nav>
+		{% endblock %}
+		<!-- ======================= End Navigation ===================== -->
+
+		<div class="main-banner" style="background-image:url(assets/img/banner-1.jpg);">
+			<div class="container">
+				<div class="col-md-12">
+				
+					
+				</div>
+			</div>
+		</div>
+		
+		{% block content %}
+		
+		{% endblock %}
+			
+		{% block footer %}
+		<!-- ================= footer start ========================= -->
+		<footer class="footer dark-bg">
+			<div class="container">
+				
+				<!-- Row Start -->
+				<div class="row">
+				
+					<div class="col-md-8 col-sm-8">
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<h4>Our COMPANY !</h4>
+								<ul>
+									<li><a href="destination-grid.html">About US</a></li>
+									<li><a href="destination-list.html">Partner with Book IT</a></li>
+								</ul>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<h4>GLOBAL COVERAGE</h4>
+								<ul>
+									<li><a href="tour-grid.html">All bus and train routes</a></li>
+									<li><a href="tour-list.html">All stations</a></li>
+									<li><a href="tour-grid-sidebar.html">All cities</a></li>
+									<li><a href="tour-list-sidebar.html">All countries</a></li>
+									<li><a href="tour-detail.html">All points of interest</a></li>
+									<li><a href="http://themezhub.com/">Bus and Train companies</a></li>
+								</ul>
+							</div>
+							 <div class="col-md-4 col-sm-4">
+								<h4>Support </h4>
+								<ul>
+									<li><a href="hotel-list.html">Help</a></li>
+								</ul>
+							</div> 
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<h4>Subscribe Now</h4>
+						<!-- Newsletter -->
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Enter Email">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><i class="fa fa-location-arrow font-20"></i></button>
+							</span>
+						</div>
+						
+						<!-- Social Box -->
+						<div class="f-social-box">
+							<ul>
+								<li><a href="https://www.facebook.com/ikbel.mimouni"><i class="fa fa-facebook facebook-cl"></i></a></li>
+								<li><a href="#"><i class="fa fa-google google-plus-cl"></i></a></li>
+								<li><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fx.com%2Fikbelmimouni%3Fs%3D21%26t%3DJvd5yckuUJWZtklCG9WcQA%26fbclid%3DIwAR3kIoMFyVYMNGnA2TTP_EBBrslAjmDX0dj9zYWl275Raf45B4G41v166Ic&h=AT0huNesfDSviyCL_UlRGYBWrPPimpInCM4lRJO-RcCIZ1TqjQZtQ4w8IhCEtiq5uGwzRvc6TYA4crsLsnM1EN4b_7nS8WiFDJOUwqd9Es_gSNrIL4j-wd-oQPaHWiRdxIMVI0N9TOZ6VLg"><i class="fa fa-twitter twitter-cl"></i></a></li>
+								<li><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fpin.it%2F5wX4iHq%3Ffbclid%3DIwAR1dwZmtoYOS9x4h0STVZ2EXajowliRSegJVDrNfYupDgZJnTo5v88pkRIw&h=AT2jHmVOMNfkxkDLuhJuD7cPOdgMcGxvcKPCSRw2C4yeWu5_b511GLr-WxFrEVcly7xKedYFO7hWiWfiwqdlSSAQGj7_2lT-SZ0sENkczHVOULhaoAcYejC7phDw2OqqSmra7g"><i class="fa fa-pinterest pinterest-cl"></i></a></li>
+								<li><a href="https://www.instagram.com/ikbel_mimouni/#"><i class="fa fa-instagram instagram-cl"></i></a></li>
+							</ul>
+						</div>
+						
+						<!-- App Links -->
+						<div class="f-app-box">
+							<ul>
+								<li><a href="#"><i class="fa fa-apple"></i>App Store</a></li>
+								<li><a href="#"><i class="fa fa-android"></i>Play Store</a></li>
+							</ul>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<!-- Row Start -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="copyright text-center">
+							<p><a target="_balnk" href="https://www.templatespoint.net">Templates Point</a></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</footer>
+
+		{% endblock %}
+
+		{% block javascript %}
+		 
+		<!-- =================== START JAVASCRIPT ================== -->
+		<script src="{{ asset('front/plugins/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/viewportchecker.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootsnav.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/slick.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.nice-select.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.fancybox.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.downCount.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/freshslider.1.0.0.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/moment.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/daterangepicker.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/wysihtml5-0.3.0.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootstrap-wysihtml5.js')}}"></script>
+		
+		<!-- Dashboard Js -->
+		<script src="{{ asset('front/plugins/js/jquery.slimscroll.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.metisMenu.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.easing.min.js')}}"></script>
+ 
+		<!-- Custom Js -->
+		<script src="{{ asset('front/js/custom.js')}}"></script>
+		
+		<script>
+			$(function() {
+
+			  $('input[name="book-date"]').daterangepicker({
+				  autoUpdateInput: false,
+				  locale: {
+					  cancelLabel: 'Clear'
+				  }
+			  });
+
+			  $('input[name="book-date"]').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			  });
+
+			  $('input[name="book-date"]').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			  });
+
+			});
+		</script>
+		
+		<script>
+			function openRightMenu() {
+				document.getElementById("rightMenu").style.display = "block";
+			}
+			function closeRightMenu() {
+				document.getElementById("rightMenu").style.display = "none";
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#styleOptions').styleSwitcher();
+			});
+		</script>
+
+		{% endblock %}
+	
+    </body>
+
+	{% endblock %}
+
+</html>
