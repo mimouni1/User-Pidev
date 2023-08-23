@@ -11,12 +11,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -47,6 +49,19 @@ class RegistrationFormType extends AbstractType
             ->add('name')
             ->add('lastname')
             ->add('tel')
+            ->add('imgURL', FileType::class, [
+                'attr' => [
+                    'class' => 'prouct-add-form-image__file-btn',
+                    'id' => 'update_user_ProfilePic',
+                ],
+                'mapped' => true,
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => true,
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
+                
+            ])
         ;
     }
 

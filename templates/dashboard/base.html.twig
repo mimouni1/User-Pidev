@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheets %}
+    <!-- Plugins CSS -->
+	<link rel="stylesheet" href="{{ asset('front/plugins/css/plugins.css')}}">	
+    
+    <!-- Custom style -->
+    <link href="{{ asset('front/css/style.css')}}" rel="stylesheet">
+	<link href="{{ asset('front/css/responsiveness.css')}}" rel="stylesheet"><link id="jssDefault" rel="stylesheet" href="{{ asset('front/css/skins/default.css')}}">
+    
+    {% endblock %}
+	</head>
+	
+    {% block body %}
+	<body>
+		
+         {% block navbar %}
+		<!-- ======================= Start Navigation ===================== -->
+		<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
+			<div class="container">
+			
+				<!-- Start Logo Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand" href="index-2.html">
+						<img src="{{ asset('front/img/logo.png')}}" class="logo logo-display" alt="">
+						<img src="{{ asset('front/img/logo.png')}}" class="logo logo-scrolled" alt="">
+					</a>
+
+				</div>
+				<!-- End Logo Header Navigation -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar-menu">
+				
+					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+					
+						<li class="dropdown">
+							<a href="#"  data-toggle="dropdown">Home</a>
+						</li>
+						<li>
+							<a href="dashboard.html">Dashboard</a>
+						</li>
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown dash-link"><a href="#" class="dropdown-toggle"><img src="{{asset('./uploads/') ~ app.user.imgURL }}" class="img-responsive avatar" alt="" />Hi, {{ app.user.name }} {{ app.user.lastname}}</a> 
+							<ul class="dropdown-menu left-nav">
+								<li><a href="dashboard.html">Dashboard</a></li>
+								<li><a href="http://themezhub.com/">My Profile</a></li>
+								<li><a href="{{ path('app_logout') }}">Log Out</a></li>
+							</ul>
+						</li>
+					</ul>
+						
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>   
+		</nav>
+
+         {% endblock %}
+		<!-- ======================= End Navigation ===================== -->
+
+		
+		<!-- ======================= Start Dashboard ===================== -->
+        <section class="dashboard gray-bg padd-0 mrg-top-50">
+			<div class="container-fluid">
+				<div class="row">
+                    {% block sidebar %}
+					<div class="col-lg-2 col-md-2 col-sm-3 dashboard-bg">
+						<!-- /. NAV TOP  -->
+							<nav class="navbar navbar-side">
+							<!-- Start Logo Header Navigation -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dashboard-menu">
+									<i class="fa fa-bars"></i>
+								</button>
+
+							</div>
+							<div class="collapse sidebar-collapse" id="dashboard-menu">
+								<div class="profile-wrapper">
+									<div class="profile-wrapper-thumb">
+										<img src="{{asset('./uploads/') ~ app.user.imgURL }}" class="img-responsive img-circle" alt="" />
+										<span class="dashboard-user-status bg-success"></span>
+									</div>
+									<h4>{{ app.user.name }}</h4>
+								</div>
+								<ul class="nav" id="main-menu">
+									
+									<li class="active">
+										<a href="dashboard.html"><i class="fa fa-dashboard" aria-hidden="true"></i>Dashboard</a>
+									</li>
+									<li>
+										<a href="{{ path('app_user_index') }}"><i class="ti-user" aria-hidden="true"></i>Users</a>
+									</li>
+									
+									<li class="log-off">
+										<a href="{{ path('app_logout') }}"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+						<!-- /. NAV SIDE  -->
+					</div>
+                    {% endblock %}
+                    </div>
+			</div>
+		</section>
+		{% block content %}
+
+        {% endblock %}
+		<!-- ======================= End Dashboard ===================== -->
+		
+
+        {% block javascript %}
+
+		 
+		<!-- =================== START JAVASCRIPT ================== -->
+		<script src="{{ asset('front/plugins/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/viewportchecker.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootsnav.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/slick.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.nice-select.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.fancybox.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.downCount.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/freshslider.1.0.0.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/moment.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/daterangepicker.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/wysihtml5-0.3.0.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/bootstrap-wysihtml5.js')}}"></script>
+		
+		<!-- Dashboard Js -->
+		<script src="{{ asset('front/plugins/js/jquery.slimscroll.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.metisMenu.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/jquery.easing.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/raphael.min.js')}}"></script>
+		<script src="{{ asset('front/plugins/js/morris.min.js')}}"></script>
+		<script src="{{ asset('front/js/chart.js')}}"></script>
+ 
+		<!-- Custom Js -->
+		<script src="{{ asset('front/js/custom.js')}}"></script>
+
+        {% endblock %}
+	
+    </body>
+
+    {% endblock %}
+
+</html>

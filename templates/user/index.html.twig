@@ -1,0 +1,55 @@
+{% extends '/dashboard/base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+<div class="col-lg-10 col-md-10 col-sm-9 col-lg-push-2 col-md-push-2 col-sm-push-3">
+	<div class="row mrg-0 mrg-top-20">
+		<div class="tr-single-box">
+			<div class="tr-single-header">
+				<h3 class="dashboard-title">Users</h3>
+			</div>
+
+            <div class="tr-single-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Lastname</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                {% for user in users %}
+                            <tr>
+                                <td>
+                                    <div class="bk-thumb">
+                                        <img src="{{asset('./uploads/') ~ user.imgURL }}" class="avatar img-circle" alt="Avatar" />
+                                        <span class="bk-status {{ user.isVerified ? 'approve' : 'cancel' }}"><i class="{{ user.isVerified ? 'fa fa-check-circle' : 'fa fa-times-circle' }}"></i></span>
+                                    </div>
+                                    <span>{{ user.id }}</span>
+                                </td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.lastname }}</td>
+                                <td>
+									<a href="#" class="tbl-action settings" title="Settings" data-toggle="tooltip"><i class="ti-pencil"></i></a>
+								    <a href="#" class="tbl-action bg-danger" title="Delete" data-toggle="tooltip"><i class="ti-trash"></i></a>
+								</td>
+                            </tr>
+                {% else %}
+                            <tr>
+                                <td colspan="10">no records found</td>
+                            </tr>
+                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
