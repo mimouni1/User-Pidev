@@ -16,49 +16,33 @@
     
     {% endblock %}
 	</head>
-	
     {% block body %}
 	<body>
-		
          {% block navbar %}
 		<!-- ======================= Start Navigation ===================== -->
 		<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
 			<div class="container">
-			
-				<!-- Start Logo Header Navigation -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-						<i class="fa fa-bars"></i>
-					</button>
-					<a class="navbar-brand" href="index-2.html">
-						<img src="{{ asset('front/img/logo.png')}}" class="logo logo-display" alt="">
-						<img src="{{ asset('front/img/logo.png')}}" class="logo logo-scrolled" alt="">
-					</a>
-
-				</div>
-				<!-- End Logo Header Navigation -->
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
 				
 					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
 					
-						<li class="dropdown">
-							<a href="#"  data-toggle="dropdown">Home</a>
+						<li>
+							<a href="{{ path('index') }}" >Home</a>
 						</li>
 						<li>
-							<a href="dashboard.html">Dashboard</a>
+							<a href="{{ path('app_dashboard') }}">Dashboard</a>
 						</li>
 					</ul>
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown dash-link"><a href="#" class="dropdown-toggle"><img src="{{asset('./uploads/') ~ app.user.imgURL }}" class="img-responsive avatar" alt="" />Hi, {{ app.user.name }} {{ app.user.lastname}}</a> 
 							<ul class="dropdown-menu left-nav">
-								<li><a href="dashboard.html">Dashboard</a></li>
-								<li><a href="http://themezhub.com/">My Profile</a></li>
+								<li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
+								<li><a href="">My Profile</a></li>
 								<li><a href="{{ path('app_logout') }}">Log Out</a></li>
 							</ul>
 						</li>
+						<li class="sign-up"><a class="btn-signup red-btn" href="{{ path('app_code_promo_new') }}">Generate a promo code</a></li> 
 					</ul>
 						
 				</div>
@@ -101,7 +85,9 @@
 									<li>
 										<a href="{{ path('app_user_index') }}"><i class="ti-user" aria-hidden="true"></i>Users</a>
 									</li>
-									
+									<li>
+										<a href="{{ path('app_code_promo_index') }}"><i class="ti-user" aria-hidden="true"></i>Codes Promo</a>
+									</li>
 									<li class="log-off">
 										<a href="{{ path('app_logout') }}"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</a>
 									</li>

@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $imgURL = null;
 
+    #[ORM\ManyToOne(inversedBy: 'User')]
+    private ?CodePromo $codePromo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,5 +185,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->imgURL = $imgURL;
 
         return $this;
+    }
+
+    public function getCodePromo(): ?CodePromo
+    {
+        return $this->codePromo;
+    }
+
+    public function setCodePromo(?CodePromo $codePromo): static
+    {
+        $this->codePromo = $codePromo;
+
+        return $this;
+    }
+
+    public function removePromoCode(CodePromo $promoCode): void
+    {
+        $this->promoCodes->removeElement($promoCode);
+        $promoCode->setUser(null);
     }
 }

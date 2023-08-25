@@ -47,7 +47,6 @@
 						<li class="dropdown">
 							<a href="{{ path('index') }}">Home</a>
 						</li>
-						
 					</ul>
 					
 					<ul class="nav navbar-nav navbar-right">
@@ -57,10 +56,13 @@
 							<ul class="dropdown-menu left-nav">
 								<li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
 								<li><a href="http://themezhub.com/">My Profile</a></li>
+								<li><a href="">Use a promo code</a></li>
 								<li><a href="{{ path('app_logout') }}">Log Out</a></li>
 							</ul>
 						</li>
-					
+						{% if app.user.codePromo == null %}
+						<li class="sign-up"><a class="btn-signup red-btn" href="{{ path('app_code_promo_new') }}">Get Promo Code</a></li> 
+						{% endif %}
 
 					{% else %}
 
