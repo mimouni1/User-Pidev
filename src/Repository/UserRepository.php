@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Twilio\Rest\Client;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -63,4 +64,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public  function sms(){
+    // Your Account SID and Auth Token from twilio.com/console
+            $sid = 'ACbb29ace912bed4ac609657a1133de46a';
+            $auth_token = '5faae629fe52758439f8f6f0f86675cc';
+    // In production, these should be environment variables. E.g.:
+    // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
+    // A Twilio number you own with SMS capabilities
+            $twilio_number = "+18147524606";
+    
+            $client = new Client($sid, $auth_token);
+            $client->messages->create(
+            // the number you'd like to send the message to
+                '+21699229311',
+                [
+                    // A Twilio phone number you purchased at twilio.com/console
+                    'from' => '+18147524606',
+                    // the body of the text message you'd like to send
+                    'body' => 'inscription avec succes!'
+                ]
+            );
+        }
 }

@@ -18,6 +18,9 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Repository\UserRepository;
+use Twilio\Rest\Client;
+
 
 class RegistrationController extends AbstractController
 {
@@ -29,7 +32,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger,UserRepository $repo): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -66,7 +69,7 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $repo->sms();
             // generate a signed url and email it to the user
             // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             //     (new TemplatedEmail())
