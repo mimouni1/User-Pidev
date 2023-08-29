@@ -20,6 +20,8 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Repository\UserRepository;
 use Twilio\Rest\Client;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 
 class RegistrationController extends AbstractController
@@ -32,9 +34,10 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger,UserRepository $repo): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger,UserRepository $repo,MailerInterface $mailer): Response
     {
         $user = new User();
+        $email = (new Email());
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -66,10 +69,18 @@ class RegistrationController extends AbstractController
                         $form->get('plainPassword')->getData()
                     )
                 );
+                $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
-            $repo->sms();
+            //$repo->sms();
+            $email = (new Email())
+            ->from(new Address('ikbel.mimouni@esprit.tn', 'BookIT Bot'))
+            ->to($user->getEmail())
+            ->subject('Your Email confirmation link')
+            ->text('Sending emails is fun again!');
+
+            //$mailer->send($email);
             // generate a signed url and email it to the user
             // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             //     (new TemplatedEmail())

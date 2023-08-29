@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New CodePromo{% endblock %}
+{% block content %}
+    <h1>use promo Code</h1>
 
-{% block body %}
-    <h1>Create new CodePromo</h1>
+    {% for message in app.session.flashbag.get('failure') %}
+			<div class="alert alert-danger">
+				{{ message }}
+			</div>
+		{% endfor %}
 
     {{ include('code_promo/_form.html.twig') }}
-
-    <a href="{{ path('app_code_promo_index') }}">back to list</a>
 {% endblock %}

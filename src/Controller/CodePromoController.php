@@ -12,10 +12,47 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime; 
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/code/promo')]
 class CodePromoController extends AbstractController
 {
+    #[Route('/usecode', name: 'app_use_code')]
+    public function usePromoCode(Request $request, EntityManagerInterface $entityManager, SessionInterface $session, CodePromoRepository $codePromoRepository, Security $security) : Response 
+    {
+        $form = $this->createForm(CodePromoType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $existingCode = $codePromoRepository->findOneByCode($form['code']->getData());
+        
+            if ($existingCode != null) {
+                $currentUser = $security->getUser();
+                if ($currentUser->getCodePromo() == null) {
+                    if ($existingCode->getDateFin() >= new \DateTime()) {
+                        $existingCode->addUser($currentUser);
+                        $entityManager->persist($existingCode);
+                        $entityManager->flush();
+                        $session->getFlashBag()->add('success', 'Promo code used successfully.');
+        
+                        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+                    } else {
+                        $session->getFlashBag()->add('failure', 'Promo code has expired.');
+                    }
+                } else {
+                    $session->getFlashBag()->add('failure', 'You already used a promo code.');
+                }
+            } else {
+                $session->getFlashBag()->add('failure', 'Invalid promo code.');
+            }
+        }
+        
+
+        return $this->render('code_promo/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/', name: 'app_code_promo_index', methods: ['GET'])]
     public function index(CodePromoRepository $codePromoRepository): Response
     {
@@ -46,6 +83,8 @@ class CodePromoController extends AbstractController
 
         return $this->redirectToRoute('app_code_promo_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 
     #[Route('/{id}', name: 'app_code_promo_show', methods: ['GET'])]
     public function show(CodePromo $codePromo): Response

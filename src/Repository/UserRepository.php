@@ -40,6 +40,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+  public function orderByASC()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.email', 'ASC')
+            ->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
@@ -67,7 +74,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 public  function sms(){
     // Your Account SID and Auth Token from twilio.com/console
             $sid = 'ACbb29ace912bed4ac609657a1133de46a';
-            $auth_token = '5faae629fe52758439f8f6f0f86675cc';
+            $auth_token = '1edd4bda26167e874303588c3189cca9';
     // In production, these should be environment variables. E.g.:
     // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
     // A Twilio number you own with SMS capabilities

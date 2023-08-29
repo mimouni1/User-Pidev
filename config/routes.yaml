@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+pdf_users:
+    path: /user/pdf
+    controller: App\Controller\UserController::pdf

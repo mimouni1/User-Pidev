@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-		<!-- ======================= End Banner ===================== -->
-		<div class="clearfix"></div>
+
+{% for message in app.session.flashbag.get('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
 		
-		<!-- ====================== How It Work ================= -->
 		<section class="how-it-works">
 			<div class="container">
 				
