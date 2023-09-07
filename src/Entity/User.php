@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -15,8 +16,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    #[Groups(['users'])]
+    
 
+    private ?int $id = null;
+    #[Groups(['users'])]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -26,18 +30,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Groups(['users'])]
     #[ORM\Column]
     private ?string $password = null;
-
+    #[Groups(['users'])]
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
-
+    #[Groups(['users'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
+    #[Groups(['users'])]
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
-
+    #[Groups(['users'])]
     #[ORM\Column(length: 255)]
     private ?string $tel = null;
 

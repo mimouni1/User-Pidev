@@ -11,8 +11,7 @@
                 <br>
                   <a href="{{ path('pdf_users') }}" class="btn btn-primary">Generate PDF</a>
                   <br><br>
-<a href="{{ path('app_tri') }}" class="btn btn-primary"><i class="fas fa-sort-amount-up"></i>Trier par email</a>
-
+                    <a href="{{ path('app_tri') }}" class="btn btn-primary"><i class="fas fa-sort-amount-up"></i>Trier par email</a>
 			</div>
 
             <div class="tr-single-body">
@@ -41,8 +40,11 @@
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.lastname }}</td>
                                 <td>
-									<a href="#" class="tbl-action settings" title="Settings" data-toggle="tooltip"><i class="ti-pencil"></i></a>
-								    <a href="#" class="tbl-action bg-danger" title="Delete" data-toggle="tooltip"><i class="ti-trash"></i></a>
+									<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="tbl-action settings" title="Settings" data-toggle="tooltip"><i class="ti-pencil"></i></a>
+                                    <form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display: inline-block;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                        <button class="tbl-action bg-danger" title="Delete" data-toggle="tooltip"><i class="ti-trash"></i></button>
+                                    </form>
 								</td>
                             </tr>
                 {% else %}

@@ -1,13 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends '/dashboard/base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Users{% endblock %}
 
-{% block body %}
-    <h1>Edit User</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+{% block content %}
+		<section class="dashboard gray-bg padd-0 mrg-top-50">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-10 col-md-10 col-sm-9 col-lg-push-2 col-md-push-2 col-sm-push-3">
+						<div class="row mrg-0 mrg-top-20">
+							<div class="tr-single-box">
+								<div class="tr-single-header">
+									<h3 class="dashboard-title">My Profile</h3>
+								</div>
+								<div class="tr-single-body">
+                                    <form class="form" method="post" enctype="multipart/form-data">
+                                    {{ form_widget(form._token) }}
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <label>First Name</label>
+                                                    {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'id': 'firstname', 'placeholder': 'Firstname', 'required': 'required'} }) }}
+                                                </p>
+                                                <p>
+                                                    <label>Last Name</label>
+                                                    {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'id': 'secondname', 'placeholder': 'Lastname', 'required': 'required'} }) }}
+                                                </p>
+                                                <p>
+                                                    <label>Email</label>
+                                                    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'id': 'useremail', 'placeholder': 'Email', 'required': 'required'} }) }}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <label>Phone</label>
+                                                    {{ form_widget(form.tel, { 'attr': {'class': 'form-control', 'id': 'userphone', 'placeholder': 'Phone', 'required': 'required'} }) }}
+                                                </p>								
+                                                <p>
+                                                    <label>New password</label>
+                                                    {{ form_widget(form.plainPassword, { 'attr': {'class': 'form-control', 'id': 'inputPassword', 'placeholder': '*******', 'required': 'required'} }) }}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div id="profile-div" class="feature-media-upload">
+                                                    {# <img id="profile-image" class="img-responsive" src="{{asset('./uploads/') ~ user.imgURL }}" alt="user image"> #}
+                                                    
+                                                    <div id="upload-container">                 
+                                                        <div id="aaiu-upload-container" style="position: relative;">                 
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+                                                            {{ form_widget(form.imgURL, { 'attr': {'class': 'form-control', 'id': 'inputEmail', 'placeholder': 'Image', 'required': 'required'} }) }}
+                                                        </div>
+                                                        <span class="upload_explain">* recommended size: minimum 550px </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <button type="submit" class="btn btn-primary">Register</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 {% endblock %}

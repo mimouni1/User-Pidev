@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% if app.user %}
+		<section class="dashboard gray-bg padd-0 mrg-top-50">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-10 col-md-10 col-sm-9 col-lg-push-2 col-md-push-2 col-sm-push-3">
+						<div class="row mrg-0 mrg-top-20">
+							<div class="tr-single-box">
+								<div class="tr-single-header">
+									<h3 class="dashboard-title">My Profile</h3>
+								</div>
+								<div class="tr-single-body">
+									<div class="row">
+										<div class="col-md-4">
+											<p>
+												<label>First Name</label>
+												<input type="text" id="firstname" class="form-control" value="{{ app.user.name }}" name="firstname">
+											</p>
+											<p>
+												<label>Last Name</label>
+												<input type="text" id="secondname" class="form-control" value="{{ app.user.lastname }}" name="firstname">
+											</p>
+											<p>
+												<label>Email</label>
+												<input type="text" id="useremail" class="form-control" value="{{ app.user.email }}" name="useremail">
+											</p>
+										</div>
+										<div class="col-md-4">
+											<p>
+												<label>Phone</label>
+												<input type="text" id="userphone" class="form-control" value="{{ app.user.tel }}" name="userphone">
+											</p>								
+											<p>
+												<label>Facebook Url</label>
+												<input type="text" id="userfacebook" class="form-control" value="" name="userfacebook">
+											</p>
+											 <p>
+												<label>Linkedin Url</label>
+												<input type="text" id="userlinkedin" class="form-control" value="" name="userlinkedin">
+											</p>
+										</div>
+										<div class="col-md-4">
+											<div id="profile-div" class="feature-media-upload">
+												<img id="profile-image" class="img-responsive" src="{{asset('./uploads/') ~ app.user.imgURL }}" alt="user image">
+												<div id="upload-container">                 
+													<div id="aaiu-upload-container" style="position: relative;">                 
+
+														<button type="file" id="aaiu-uploader" class="btn theme-btn full-width">Upload Image</button>
+													</div>
+													<span class="upload_explain">* recommended size: minimum 550px </span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+    {% endif %}
+{% endblock %}
