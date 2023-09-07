@@ -38,12 +38,12 @@
                                                 </p>								
                                                 <p>
                                                     <label>New password</label>
-                                                    {{ form_widget(form.plainPassword, { 'attr': {'class': 'form-control', 'id': 'inputPassword', 'placeholder': '*******', 'required': 'required'} }) }}
+                                                    {{ form_widget(form.plainPassword, { 'attr': {'class': 'form-control', 'id': 'inputPassword', 'placeholder': '*******'} }) }}
                                                 </p>
                                             </div>
                                             <div class="col-md-4">
                                                 <div id="profile-div" class="feature-media-upload">
-                                                    {# <img id="profile-image" class="img-responsive" src="{{asset('./uploads/') ~ user.imgURL }}" alt="user image"> #}
+                                                     <img id="profile-image" class="img-responsive" src="{{asset('./uploads/') ~ user.imgURL }}" alt="user image">
                                                     
                                                     <div id="upload-container">                 
                                                         <div id="aaiu-upload-container" style="position: relative;">                 

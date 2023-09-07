@@ -75,7 +75,7 @@ class CodePromoController extends AbstractController
         $codePromo->setDateDebut($currentDateTime);
         
         $customDate = new DateTime();
-        $customDate->modify('+1 minute');
+        $customDate->modify('+10 minute');
         $codePromo->setDateFin($customDate);
 
         $entityManager->persist($codePromo);

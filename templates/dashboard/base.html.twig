@@ -38,7 +38,7 @@
 						<li class="dropdown dash-link"><a href="#" class="dropdown-toggle"><img src="{{asset('./uploads/') ~ app.user.imgURL }}" class="img-responsive avatar" alt="" />Hi, {{ app.user.name }} {{ app.user.lastname}}</a> 
 							<ul class="dropdown-menu left-nav">
 								<li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
-								<li><a href="">My Profile</a></li>
+								<li><a href="{{ path('app_user_profile') }}">My Profile</a></li>
 								<li><a href="{{ path('app_logout') }}">Log Out</a></li>
 							</ul>
 						</li>

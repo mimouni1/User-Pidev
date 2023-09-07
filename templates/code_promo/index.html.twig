@@ -28,18 +28,28 @@
             <tr>
                 <td>{{ code_promo.id }}</td>
                 <td>{{ code_promo.code }}</td>
-                {% for user in code_promo.User %}
-                {% if user == null %}
-                <td>Not Used</td>
-            {% else %}
-                <td>{{ user.name }}</td>
-            {% endif %}
-                {% endfor %}
+                
+                    
+                        <td>
+    {% if code_promo.User is not empty %}
+        {% for user in code_promo.User %}
+            {{ user.name }}
+            {% if not loop.last %}, {% endif %}
+        {% endfor %}
+    {% else %}
+        Not Used
+    {% endif %}
+</td>
+                
                 <td>{{ code_promo.dateDebut ? code_promo.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ code_promo.dateFin ? code_promo.dateFin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_code_promo_show', {'id': code_promo.id}) }}">show</a>
-                    <a href="{{ path('app_code_promo_edit', {'id': code_promo.id}) }}">edit</a>
+                    <a href="#" class="tbl-action settings" title="Settings" data-toggle="tooltip"><i class="ti-pencil"></i></a>
+                        <form method="post" action="{{ path('app_code_promo_delete', {'id': code_promo.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display: inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ code_promo.id) }}">
+                            <button class="tbl-action bg-danger" title="Delete" data-toggle="tooltip"><i class="ti-trash"></i></button>
+                    </form>
+                    
                 </td>
             </tr>
         {% else %}
